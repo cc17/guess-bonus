@@ -1,0 +1,6 @@
+{
+  "name":"guess bonus",
+  "devDependencies":{
+    "jquery":""
+  }
+}
