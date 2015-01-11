@@ -20,6 +20,8 @@ var GuessBonus = {
     initShake: function() {
         this.hideResult();
 
+
+
         var _this = this,
             $drawLots = this.$drawLots,
             $showLot  = this.$showLot,
@@ -27,6 +29,7 @@ var GuessBonus = {
             $golden  = this.$golden;
 
         if($drawLots.length){
+            $drawLots.click(_this.reset.bind(_this));
             $drawLots.addClass('god-shake');
         } 
         if($title.length){
@@ -83,15 +86,17 @@ var GuessBonus = {
         
        
     },
+    reset:function(){
+        this.isShaked = false;
+        window.location.hash = 'wx_bonus_id=-1';
+        this.$showLots.removeClass('money-open');
+    },
     showLot: function( wxFid) {
 
         $('.bonus').empty().append('<image src="/images/bonus'+ wxFid +'.png"/>').append('<div class="try-more">我也要试玩</div>');
         var self = this;
         $('.try-more').click(function(){ 
-            self.isShaked = false;
-            window.location.hash = 'wx_bonus_id=-1';
-            self.$showLots.removeClass('money-open');
-
+            self.reset()
         });
     }
 };
@@ -174,14 +179,11 @@ var loaderimages = {
    * @type {Array}
    */
   allImages: [
-    "images/bg.jpg",
     "images/bonus0.png",
     "images/bonus1.png",
     "images/bonus2.png",
     "images/bonus3.png",
     "images/bonus4.png",
-    "images/god.png",
-    "images/money.png",
     "images/money1.png",
     "images/money2.png",
     "images/money3.png"
